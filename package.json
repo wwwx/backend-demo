@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Node Backend Example",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  },
   "keywords": [],
   "author": "WangXu",
   "license": "MIT",
