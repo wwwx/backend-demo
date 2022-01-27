@@ -4,6 +4,8 @@
   "description": "Node Backend Example",
   "scripts": {
     "test": "echo \"OK\n\" && exit 0",
+    "lint": "eslint .",
+    "lint:write": "eslint . --fix",
     "start:dev": "nodemon",
     "start": "npm run build && node build/app.js",
     "build": "rimraf build && tsc",
@@ -18,7 +20,10 @@
   },
   "devDependencies": {
     "@types/node": "^12.20.42",
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.7.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.3.1",
     "nodemon": "^2.0.15",
