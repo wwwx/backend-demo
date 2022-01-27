@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 var __createBinding =
   (this && this.__createBinding) ||
   (Object.create
@@ -19,10 +19,10 @@ var __setModuleDefault =
   (this && this.__setModuleDefault) ||
   (Object.create
     ? function (o, v) {
-        Object.defineProperty(o, "default", { enumerable: true, value: v });
+        Object.defineProperty(o, 'default', { enumerable: true, value: v });
       }
     : function (o, v) {
-        o["default"] = v;
+        o['default'] = v;
       });
 var __importStar =
   (this && this.__importStar) ||
@@ -31,14 +31,21 @@ var __importStar =
     var result = {};
     if (mod != null)
       for (var k in mod)
-        if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+        if (k !== 'default' && Object.prototype.hasOwnProperty.call(mod, k))
           __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
   };
-Object.defineProperty(exports, "__esModule", { value: true });
-var http = __importStar(require("http"));
-var server = http.createServer(function (req, res) {
-  res.end("OK");
+Object.defineProperty(exports, '__esModule', { value: true });
+var http = __importStar(require('http'));
+require('dotenv/config');
+if (!process.env.PORT) {
+  process.exit(1);
+}
+var PORT = parseInt(process.env.PORT, 10);
+var server = http.createServer(function (_req, res) {
+  res.end('OK');
 });
-server.listen(3000);
+server.listen(PORT, function () {
+  console.log('server listening at http://localhost:' + PORT);
+});
