@@ -1,4 +1,4 @@
-import * as http from 'http'
+import http, { IncomingMessage, ServerResponse } from 'http'
 import 'dotenv/config'
 
 if (!process.env.PORT) {
@@ -6,11 +6,12 @@ if (!process.env.PORT) {
 }
 
 const PORT = parseInt(process.env.PORT, 10)
+const HOST = '0.0.0.0'
 
-const server = http.createServer((req, res) => {
-  res.end('OK')
+const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
+  res.end('200 ok')
 })
 
-server.listen(PORT, () => {
-  console.log('server listening at http://localhost:' + PORT)
+server.listen(PORT, HOST, () => {
+  console.log('Server listening at http://localhost:' + PORT)
 })
