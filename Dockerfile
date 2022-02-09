@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 7000
+EXPOSE 3000
 
 CMD [ "node", "build/app.js" ]
 
