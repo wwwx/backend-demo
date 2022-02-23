@@ -7,7 +7,9 @@ import { errorHandler } from '@/middleware/error.middleware'
 import { NotFoundHandler } from '@/middleware/not-found.middleware'
 
 export default ({ app }: { app: Application }) => {
-  app.use(logger('dev'))
+  if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'))
+  }
 
   app.use(express.json())
 
