@@ -12,7 +12,11 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "prepare": "husky install"
   },
-  "keywords": [],
+  "keywords": [
+    "express",
+    "mongodb",
+    "typescript"
+  ],
   "author": "WangXu",
   "license": "MIT",
   "dependencies": {
@@ -47,7 +51,7 @@
     "typescript": "^4.5.5"
   },
   "lint-staged": {
-    "*.{js,json,ts,md}": [
+    "*.{js,json,ts}": [
       "eslint . --fix",
       "prettier --write ."
     ]
