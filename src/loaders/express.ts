@@ -5,6 +5,7 @@ import config from '@/config'
 import routes from '@/api'
 import { errorHandler } from '@/middleware/error.middleware'
 import { NotFoundHandler } from '@/middleware/not-found.middleware'
+import { requestInterceptor } from '@/middleware/request.middleware'
 
 export default ({ app }: { app: Application }) => {
   if (process.env.NODE_ENV === 'development') {
@@ -13,11 +14,13 @@ export default ({ app }: { app: Application }) => {
 
   app.use(express.json())
 
+  app.use(requestInterceptor)
+
   /**
    * Health check
    */
-  app.get('/health', (req: Request, res: Response) => {
-    res.status(StatusCodes.OK).send({ hello: 123 })
+  app.get('/health', (_req: Request, res: Response) => {
+    res.status(StatusCodes.OK).send('200, OK')
   })
 
   /**

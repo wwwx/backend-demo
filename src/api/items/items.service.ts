@@ -1,12 +1,27 @@
 import { Service } from 'typedi'
+import { ItemsInputDto } from './items.interface'
+import Items from './items.model'
 
 @Service()
 export default class ItemsService {
-  getItemById() {
-    return new Items(100001, 'hello', 'world')
+  getByName(name: string) {
+    return Items.find({ name })
   }
-}
 
-export class Items {
-  constructor(public id: number, public label: string, public desc: string) {}
+  getAll() {
+    return Items.find({})
+  }
+
+  create(item: ItemsInputDto) {
+    const newItems = new Items(item)
+    return newItems.save()
+  }
+
+  update(name: string, body: Partial<ItemsInputDto>) {
+    return Items.updateMany({ name }, body)
+  }
+
+  remove(name: string) {
+    return Items.remove({ name })
+  }
 }
