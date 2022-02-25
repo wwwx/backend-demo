@@ -5,8 +5,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:write": "eslint . --fix",
-    "start:dev": "nodemon",
-    "start": "npm run build && node build/app.js",
+    "start": "nodemon",
     "build": "npm run clean && tsc",
     "clean": "rimraf build",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
