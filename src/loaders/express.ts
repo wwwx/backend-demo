@@ -7,7 +7,7 @@ import { errorHandler } from '@/middleware/error.middleware'
 import { NotFoundHandler } from '@/middleware/not-found.middleware'
 import { requestInterceptor } from '@/middleware/request.middleware'
 
-export default ({ app }: { app: Application }) => {
+export default async ({ app }: { app: Application }) => {
   if (process.env.NODE_ENV === 'development') {
     app.use(logger('dev'))
   }

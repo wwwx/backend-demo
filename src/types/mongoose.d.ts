@@ -1,3 +1,9 @@
-import mongoose from 'mongoose'
+import { ItemsInputDto } from '@/api/items/items.interface'
+import { Document } from 'mongodb'
+import { Model } from 'mongoose'
 
-export type Mongoose = typeof mongoose
+declare global {
+  namespace Models {
+    export type ItemsModel = Model<ItemsInputDto & Document>
+  }
+}

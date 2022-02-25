@@ -1,27 +1,28 @@
-import { Service } from 'typedi'
+import { Inject, Service } from 'typedi'
 import { ItemsInputDto } from './items.interface'
-import Items from './items.model'
 
 @Service()
 export default class ItemsService {
+  constructor(@Inject('itemsModel') private itemsModel: Models.ItemsModel) {}
+
   getByName(name: string) {
-    return Items.find({ name })
+    return this.itemsModel.find({ name })
   }
 
   getAll() {
-    return Items.find({})
+    return this.itemsModel.find()
   }
 
   create(item: ItemsInputDto) {
-    const newItems = new Items(item)
+    const newItems = new this.itemsModel(item)
     return newItems.save()
   }
 
   update(name: string, body: Partial<ItemsInputDto>) {
-    return Items.updateMany({ name }, body)
+    return this.itemsModel.updateMany({ name }, body)
   }
 
   remove(name: string) {
-    return Items.remove({ name })
+    return this.itemsModel.remove({ name })
   }
 }

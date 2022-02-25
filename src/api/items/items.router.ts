@@ -13,8 +13,8 @@ export default (app: Router) => {
    * Get items
    */
   route.get('/', async (req: Request, res: Response) => {
-    const itemsService = Container.get(ItemsService)
-    const data = await itemsService.getAll()
+    const itemsServiceInstance = Container.get(ItemsService)
+    const data = await itemsServiceInstance.getAll()
 
     Logger.info('Number of item records: %s', data.length)
 
@@ -27,8 +27,8 @@ export default (app: Router) => {
   route.get('/:name', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name } = req.params
-      const itemsService = Container.get(ItemsService)
-      const data = await itemsService.getByName(name)
+      const itemsServiceInstance = Container.get(ItemsService)
+      const data = await itemsServiceInstance.getByName(name)
 
       return res.status(StatusCodes.OK).send(data)
     } catch (e) {
@@ -42,8 +42,8 @@ export default (app: Router) => {
    */
   route.post('/create', async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const itemsService = Container.get(ItemsService)
-      const data = await itemsService.create(req.body)
+      const itemsServiceInstance = Container.get(ItemsService)
+      const data = await itemsServiceInstance.create(req.body)
 
       Logger.info(data)
 
@@ -60,20 +60,20 @@ export default (app: Router) => {
   route.put('/:name', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name } = req.params
-      const itemsService = Container.get(ItemsService)
+      const itemsServiceInstance = Container.get(ItemsService)
 
       // check if existing
-      const existingItem = await itemsService.getByName(name)
+      const existingItem = await itemsServiceInstance.getByName(name)
       Logger.debug('existing item: %o', existingItem)
 
       // existing and then updating
       if (existingItem.length) {
-        const data = await itemsService.update(name, req.body)
+        const data = await itemsServiceInstance.update(name, req.body)
         return res.status(StatusCodes.OK).send(data)
       }
 
       // if it's not exist, then create it
-      const data = await itemsService.create(req.body)
+      const data = await itemsServiceInstance.create(req.body)
       return res.status(StatusCodes.OK).send(data)
     } catch (e) {
       Logger.error(e)
@@ -87,8 +87,8 @@ export default (app: Router) => {
   route.delete('/:name', async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name } = req.params
-      const itemsService = Container.get(ItemsService)
-      await itemsService.remove(name)
+      const itemsServiceInstance = Container.get(ItemsService)
+      await itemsServiceInstance.remove(name)
       return res.status(StatusCodes.NO_CONTENT).send()
     } catch (e) {
       Logger.error(e)
