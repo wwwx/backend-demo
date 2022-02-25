@@ -7,7 +7,6 @@ import config from '@/config'
 async function startServer() {
   const app = express()
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   await require('./loaders').default({ expressApp: app })
 
   const { port, host } = config
