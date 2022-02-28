@@ -10,7 +10,7 @@ npm install
 ### start
 
 ```
-npm run start:dev
+npm run start
 ```
 
 ### docker build
